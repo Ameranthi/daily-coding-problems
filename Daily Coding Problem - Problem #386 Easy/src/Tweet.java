@@ -7,37 +7,40 @@ public class Tweet{
         Scanner in = new Scanner(System.in);
         //read in the string
         String inputtedString = in.nextLine();
-        ArrayList stringList = new ArrayList<>();
+
+        //begin sorting
+        ArrayList <Character> stringList = new ArrayList<Character>();
         //add each character of the string to the array list
         for(int i = 0; i < inputtedString.length(); i++){
             stringList.add(inputtedString.charAt(i));
         }
         //System.out.println(stringList); //simple check
 
-        //unique characters only list:
-        Set uniqueChars = new HashSet(stringList);
-        //System.out.println("uniqueList : " + uniqueChars); //simple check
-        ArrayList uniqueCharsList = new ArrayList(uniqueChars);
-
         //create hash map where key is the letter and value is the frequency that it appears
-        HashMap frequency = new HashMap();
-        for (int i = 0; i < uniqueChars.size(); i++){
-            frequency.put(uniqueCharsList.get(i), Collections.frequency(stringList,uniqueCharsList.get(i)));
+        TreeMap<Character, Counter> unique = new TreeMap<Character, Counter>();
+        for (char c : stringList){
+           if (unique.get(c) == null){
+               unique.put(c, new Counter());
+           }
+            unique.get(c).addCounter();
         }
 
-        //create a new list
-        ArrayList sortedArray = new ArrayList<>();
-
-        // adding the key with the largest value v amount of times to the list
-
-        for(int i = 0; i < stringList.size(); i++){
-            for(int j = 0; i < )
-            sortedArray.add();
+        TreeMap <Integer, ArrayList<Character>> letters = new TreeMap<Integer, ArrayList<Character>>();
+            for(Character letter : unique.keySet()){
+                if (letters.get(unique.get(letter).getCounter()) == null){
+                    letters.put(unique.get(letter).getCounter(), new ArrayList<Character>());
+                }
+                letters.get(unique.get(letter).getCounter()).add(letter);
         }
 
-
-
-
+            for(Integer count : letters.descendingKeySet()){
+                for(Character letter : letters.get(count)){
+                    for (int i = 0; i < count; i++){
+                        System.out.print(letter);
+                    }
+                }
+            }
+            System.out.println();
 
 
     }
